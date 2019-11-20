@@ -12,11 +12,11 @@ public class Arm {
     private final int potOffset = -1000;//Offset of pot from level
 
     private final double p = 0.0013;//0.85
-    private final double i = 0.0001;//0.01
-    private final double d = 0;//0
+    private final double i = 0.001;//0.01
+    private final double d = 0.0125;//0
 
-    private final double maxUpPIDSpeed = 0.3;
-    private final double maxDownPIDSpeed = -0.3;
+    private final double maxUpPIDSpeed = 0.55;
+    private final double maxDownPIDSpeed = 0.05;
 
     private WPI_TalonSRX left;
     private WPI_TalonSRX right;

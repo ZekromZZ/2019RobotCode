@@ -44,7 +44,7 @@ public class Operator {
     public static final int PID_ADJUST_SCALE = 10;
 
     public static final double WRIST_OVERRIDE_SPEED = 0.5;
-    public static final double ARM_OVERRIDE_SPEED = 0.3;
+    public static final double ARM_OVERRIDE_SPEED = 0.5;
 
     Controller op;
     Arm arm;
@@ -66,7 +66,7 @@ public class Operator {
         ARM_MID_ROCKET_BALL = ARM_STARTUP + 420;
         ARM_BOT_ROCKET_BALL = ARM_STARTUP + 200;
 
-        ARM_MID_ROCKET_HATCH = ARM_STARTUP + 389;
+        ARM_MID_ROCKET_HATCH = ARM_STARTUP + 450;
         ARM_LOW_HATCH = ARM_STARTUP + 200;
 
         ARM_CARGO_BALL = ARM_STARTUP + 765;
@@ -87,6 +87,7 @@ public class Operator {
 
         WRIST_LOW_RANGE = WRIST_CARGO_BALL;
         WRIST_HIGH_RANGE = WRIST_STARTUP;
+
     }
 
     public void runOpControls() {
@@ -96,8 +97,9 @@ public class Operator {
         hatchControl();
 
         //System.out.println(wrist.pidOutput());
-        System.out.println("position "+ wrist.getPot().get());
-        //System.out.println("set Pos "+ ARM_LOW_HATCH);
+        System.out.println("Wrist position "+ wrist.getPot().get());
+        System.out.println("Arm position "+ arm.getPot().get());
+
     }
 
     public void resetPID() {
@@ -201,6 +203,9 @@ public class Operator {
         }
     }
 
+    
+//up dpad is no good
+//x dpad is bad
     private void armWristControl() {
         if (op.getOButton()) {
             arm.setPosition(ARM_MID_ROCKET_HATCH);
@@ -208,7 +213,8 @@ public class Operator {
         }
         else if (op.getXButton()) {
             arm.setPosition(ARM_LOW_HATCH);
-            wrist.setPosition(WRIST_LOW_HATCH);
+            wrist.setPosition(WRIST_LOW_HATCH); 
+            
         }
         else if (op.getSquareButton()) {
             arm.setPosition(ARM_STARTUP);
